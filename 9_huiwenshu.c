@@ -3,9 +3,11 @@
 // 将每个位的数字存放到一个定长(12)的整数数组中，前后一起遍历数组中的元素是否相等。
 // 空间复杂度 O(1), 时间复杂度O(n)
 
+#define ARR_CAPACITY 12
+
 int main()
 {
-    int arr[12];
+    int arr[ARR_CAPACITY];
     int count = 0;
     int num = 6789876;
 
