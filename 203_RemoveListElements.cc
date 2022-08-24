@@ -1,6 +1,10 @@
 #include <cstddef>
 #include <iostream>
+#include <iterator>
+#include <map>
 #include <cassert>
+#include <utility>
+#include <unordered_map>
 using namespace std;
 
 /**
@@ -38,7 +42,9 @@ ListNode* removeElements(ListNode* head, int val) {
         cur = cur->next;
     }
 
-    return dummy->next;
+    delete dummy;
+
+    return head;
 }
 
 class Solution {
@@ -84,6 +90,53 @@ public:
      
          // 最后返回 dummy 节点的下一节点
          // 因为这个时候 dummy 指向的是一个我们设置的节点，它的下一节点才是原链表中的节点
-         return dummy->next;
+
+         // 此处得返回head, dumpy不能使用，得delete dummpy
+         // return dummy->next;
+         delete dummy;
+         return head;
     }
 };
+
+int main()
+{
+    // test multimap
+    // multimap<int, char> testmap;
+    // testmap.insert(make_pair(3, 'b'));
+    // testmap.insert(make_pair(1, 'c'));
+    // testmap.insert(make_pair(2, 'a'));
+    //
+    // for(auto& item : testmap) {
+    //     cout << item.first << ": " << item.second << endl;
+    // }
+
+    // auto begin = testmap.begin();
+    // auto end = testmap.end();
+    // while(begin != end) {
+    //     cout << begin->first << ": " << begin->second << endl;
+    //     begin++;
+    // }
+
+    // test unordered_map
+    unordered_map<int, char> m;
+    m.emplace(1, 'a');
+    m.emplace(2, 'b');
+    // m.insert({{4, "d"}, {1, "a"}});
+    // m.insert(make_pair(4, 'd'));
+    // m.insert(make_pair(3, 'c'));
+    m.emplace(4, 'd');
+    m.emplace(3, 'c');
+
+    for(const auto& item: m) {
+        cout << item.first << ": " << item.second << endl;
+    }
+
+    // auto beg = m.cbegin();
+    // auto end = m.cend();
+    // while(end != beg) {
+    //     cout << beg->first << ": " << beg->second << endl;
+    //     beg++;
+    // }
+
+    return 0;
+}
