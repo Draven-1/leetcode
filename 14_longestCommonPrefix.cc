@@ -24,7 +24,7 @@ int main()
     for(int j = 0; j < str[0].size(); ++j)
     {
         // 取第一排第j列的字符和第j列的第1-i行的数据依次比较
-        char c = str[0][j];
+        char c = str[0][j]; 
         // 横向遍历, 从第2行开始
         for(int i = 1; i < str.size(); ++i)
         {
